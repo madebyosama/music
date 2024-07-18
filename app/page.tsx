@@ -55,7 +55,11 @@ export default function Home() {
                 <div>
                   <h3>{song.title}</h3>
                   <p>{song.singer}</p>
-                  <audio controls src={song.link}></audio>
+                  <audio
+                    className={styles.audio}
+                    controls
+                    src={song.link}
+                  ></audio>
                 </div>
               </div>
             ))}
