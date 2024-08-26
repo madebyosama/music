@@ -49,8 +49,8 @@ export default function Home() {
                 <Image
                   src={song.thumbnail}
                   alt={`${song.title} thumbnail`}
-                  width={20}
-                  height={20}
+                  width={512}
+                  height={512}
                 />
                 <div>
                   <h3>{song.title}</h3>
