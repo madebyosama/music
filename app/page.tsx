@@ -58,6 +58,7 @@ export default function Home() {
                   <audio
                     className={styles.audio}
                     controls
+                    loop
                     src={song.link}
                   ></audio>
                 </div>
