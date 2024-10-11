@@ -39,34 +39,28 @@ export default function Home() {
 
   return (
     <div className={styles.main}>
-      {loading ? (
-        <p>Loading...</p> // Display a loading indicator while fetching data
-      ) : (
-        <>
-          <div>
-            {songs.map((song, index) => (
-              <div key={index} className={styles.song}>
-                <Image
-                  src={song.thumbnail}
-                  alt={`${song.title} thumbnail`}
-                  width={512}
-                  height={512}
-                />
-                <div>
-                  <h3>{song.title}</h3>
-                  <p>{song.singer}</p>
-                  <audio
-                    className={styles.audio}
-                    controls
-                    loop
-                    src={song.link}
-                  ></audio>
-                </div>
-              </div>
-            ))}
+      <div>
+        {songs.map((song, index) => (
+          <div key={index} className={styles.song}>
+            <Image
+              src={song.thumbnail}
+              alt={`${song.title} thumbnail`}
+              width={512}
+              height={512}
+            />
+            <div>
+              <div className={styles.songTitle}>{song.title}</div>
+              <div className={styles.songSinger}>{song.singer}</div>
+              <audio
+                className={styles.audio}
+                controls
+                loop
+                src={song.link}
+              ></audio>
+            </div>
           </div>
-        </>
-      )}
+        ))}
+      </div>
     </div>
   );
 }

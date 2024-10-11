@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+import './globals.css';
+import localFont from 'next/font/local';
 
 export const metadata: Metadata = {
   title: 'Music',
   description: 'Simple music player for the personal use',
 };
+
+const font = localFont({ src: './font.woff2' });
 
 export default function RootLayout({
   children,
@@ -16,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <body className={font.className}>{children}</body>
     </html>
   );
 }
