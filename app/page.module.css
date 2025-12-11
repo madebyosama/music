@@ -60,4 +60,27 @@
   .song {
     min-width: 300px;
   }
+  .song {
+    margin-bottom: 10px;
+  }
+  .song img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .songTitle {
+    font-size: 15px;
+    margin-bottom: -10px;
+    z-index: 9;
+  }
+
+  .songSinger {
+    display: none !important;
+    height: 0px;
+    margin: 0px;
+  }
+  .audio {
+    margin-bottom: -10px;
+    width: 280px;
+  }
 }
