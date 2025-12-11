@@ -54,3 +54,10 @@
   margin-bottom: 20px;
   outline: none;
 }
+
+@media screen and (max-width: 600px) {
+  .searchInput,
+  .song {
+    min-width: 300px;
+  }
+}
