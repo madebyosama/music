@@ -1,46 +1,63 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import styles from './page.module.css';
-import Image from 'next/image';
+import { useEffect, useState } from 'react'
+import styles from './page.module.css'
+import Image from 'next/image'
 
 interface Song {
-  link: string;
-  thumbnail: string;
-  singer: string;
-  title: string;
+  link: string
+  thumbnail: string
+  singer: string
+  title: string
 }
 
 export default function Home() {
-  const [songs, setSongs] = useState<Song[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [songs, setSongs] = useState<Song[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [searchQuery, setSearchQuery] = useState<string>('')
 
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await fetch(
           'https://opensheet.elk.sh/1oSDi5i4mwb3M4jDVazuvQDmjSQxNhsAfggNhNTh1kQ4/1'
-        );
+        )
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Network response was not ok')
         }
-        const data: Song[] = await response.json();
-        setSongs(data);
-        console.log(data);
+        const data: Song[] = await response.json()
+        setSongs(data)
+        console.log(data)
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error)
       } finally {
-        setLoading(false); // Set loading to false once the fetch is complete
+        setLoading(false)
       }
     }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
+
+  const filteredSongs = songs.filter((song) => {
+    const query = searchQuery.toLowerCase()
+    return (
+      song.title.toLowerCase().includes(query) ||
+      song.singer.toLowerCase().includes(query)
+    )
+  })
 
   return (
     <div className={styles.main}>
       <div>
-        {songs.map((song, index) => (
+        <div className={styles.search}>
+          <input
+            className={styles.searchInput}
+            placeholder='Search songs or artists...'
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+        {filteredSongs.map((song, index) => (
           <div key={index} className={styles.song}>
             <Image
               src={song.thumbnail}
@@ -62,5 +79,5 @@ export default function Home() {
         ))}
       </div>
     </div>
-  );
+  )
 }
